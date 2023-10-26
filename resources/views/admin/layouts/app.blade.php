@@ -5,10 +5,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Starter</title>
-
+    <title>AdminLTE 3 | Starter</title>    
     @vite(['resources/css/app.css','resources/js/app.js'])
-    
+    <script src="{{ mix('js/app.js') }}"></script>
+    <script src="{{ mix('js/components/Dashboard.vue') }}"></script>
+
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -198,8 +199,8 @@
 
         <div class="content-wrapper">
 
-           
-           
+            <dashboard></dashboard>
+
 
         </div>
 

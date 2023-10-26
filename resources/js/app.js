@@ -12,13 +12,16 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 import Routes from './routes.js';
 
+import Dashboard from './components/Dashboard.vue';
+
 const app = createApp({});
 
 const router = createRouter({
     history: createWebHistory(),
-    router: Routes,
+    routes: Routes,
 });
 
+app.component('dashboard', Dashboard);
 app.use(router);
 
 app.mount('#app');
