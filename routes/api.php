@@ -28,7 +28,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::put('/files/{id}', 'App\Http\Controllers\API\FileController@update');
     Route::delete('/files/{id}', 'App\Http\Controllers\API\FileController@delete');
 
-    Route::post('/folders', 'App\Http\Controllers\API\FolderController@create');
+    // Route::post('/folders', 'App\Http\Controllers\API\FolderController@create');
     // Route::put('/folders/{id}', 'YourNamespace\FolderController@update');
     Route::delete('/folders/{id}', 'App\Http\Controllers\API\FolderController@delete');
 });
@@ -37,3 +37,6 @@ Route::group(['middleware' => ['auth:api']], function () {
 //Route::middleware('auth:api')->delete('/files/{id}', [FileController::class, 'delete']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::get('/getfiles', 'App\Http\Controllers\API\FileController@getFiles');
+Route::get('/getfolders', 'App\Http\Controllers\API\FolderController@getFolders');
+Route::post('/folders', 'App\Http\Controllers\API\FolderController@create');

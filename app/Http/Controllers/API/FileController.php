@@ -68,4 +68,8 @@ class FileController extends Controller
 
         return response()->json(['message' => 'File deleted successfully'], 200);
     }
+
+    public function getFiles(){
+        return response()->json(['message' => 'this is data']);
+    }
 }

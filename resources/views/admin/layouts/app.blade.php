@@ -7,8 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AdminLTE 3 | Starter</title>    
     @vite(['resources/css/app.css','resources/js/app.js'])
-    <script src="{{ mix('js/app.js') }}"></script>
-    <script src="{{ mix('js/components/Dashboard.vue') }}"></script>
 
 </head>
 
@@ -200,6 +198,7 @@
         <div class="content-wrapper">
 
             <dashboard></dashboard>
+            <!-- <files></files> -->
 
 
         </div>

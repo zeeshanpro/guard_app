@@ -16,10 +16,11 @@ class FolderController extends Controller
             'folder_name' => 'required|string',
             'parent_folder' => 'sometimes|string', // If you want to create a subfolder within an existing folder
         ]);
-
+    
         $folderName = $request->input('folder_name');
         $parentFolder = $request->input('parent_folder');
-        $userDirectory = 'user_' . auth()->id(); // Generate a unique directory name for the user
+        //$userDirectory = 'user_' . auth()->id(); // Generate a unique directory name for the user
+        $userDirectory = 'user_' . 1; // Generate a unique directory name for the user
         $folderPath = $userDirectory . '/' . $folderName; // Combine the user's directory with the file name
         $disk = "local";// Replace with the name of the disk you want to use (e.g., 'public', 'local', 's3', etc.)
 
@@ -42,7 +43,7 @@ class FolderController extends Controller
 
                 //Create Folder Record in Database
                 $folder = new Folder();
-                $folder->user_id = auth()->id();
+                $folder->user_id = 1;//auth()->id()
                 $folder->parent_id = $parent_id;
                 $folder->name = $folderName;
                 $folder->path = $folderPath;
@@ -54,6 +55,11 @@ class FolderController extends Controller
         } catch (Exception $e) {
             return response()->json(['message' => 'Failed to create folder'], 500);
         }
+    }
+
+    public function getFolders(){
+        $folders =  Folder::get();
+        return response()->json(['message' => 'Folder created successfully', 'data' => $folders], 201);    
     }
 
     public function delete($id)
