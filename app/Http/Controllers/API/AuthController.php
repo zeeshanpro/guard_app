@@ -43,16 +43,22 @@ class AuthController extends Controller
         ]);
 
         if($validator->fails()){
-            return response(['error' => $validator->errors()]);
+            return response(['error' => $validator->errors()],400);
         }
 
         if (!auth()->attempt($data)) {
-            return response(['message' => 'Login credentials are invaild']);
+            return response(['message' => 'Login credentials are invaild'],400);
         }
 
         $accessToken = auth()->user()->createToken('authToken')->accessToken;
         
         return response(['access_token' => $accessToken]);
 
+    }
+
+    public function logout(Request $request)
+    {
+        $request->user()->token()->revoke();
+        return response()->json(['message' => 'Successfully logged out']);
     }
 }

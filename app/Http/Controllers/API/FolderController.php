@@ -4,9 +4,10 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
+//use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Folder;
+use App\Models\File;
 
 class FolderController extends Controller
 {
@@ -58,8 +59,9 @@ class FolderController extends Controller
     }
 
     public function getFolders(){
-        $folders =  Folder::get();
-        return response()->json(['message' => 'Folder created successfully', 'data' => $folders], 201);    
+        $folders =  Folder::whereNull('parent_id')->get();
+        $files =  File::whereNull('folder_id')->get();
+        return response()->json(['message' => 'Folder created successfully', 'folders' => $folders, 'files' => $files], 201);    
     }
 
     public function delete($id)

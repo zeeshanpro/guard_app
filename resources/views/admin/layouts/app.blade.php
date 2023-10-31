@@ -11,7 +11,7 @@
 </head>
 
 <body class="hold-transition sidebar-mini">
-    <div class="wrapper" id="app">
+    <div class="wrapper">
 
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
 
@@ -184,10 +184,21 @@
                             <a href="/admin/files" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
-                                    All Files
+                                    File Manager
                                 </p>
                             </a>
                         </li>
+
+                        <li class="nav-item">
+                            <form method="POST" action="#"></form>
+                            <a href="#" onclick="event.preventDefault(); this.closest('form').submit();" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    Logout
+                                </p>
+                            </a>
+                        </li>
+
                     </ul>
                 </nav>
 
@@ -195,10 +206,8 @@
 
         </aside>
 
-        <div class="content-wrapper">
+        <div class="content-wrapper" id="app">
 
-            <dashboard></dashboard>
-            <!-- <files></files> -->
 
 
         </div>

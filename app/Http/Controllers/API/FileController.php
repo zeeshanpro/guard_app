@@ -13,12 +13,13 @@ class FileController extends Controller
     public function upload(Request $request)
     {
         $request->validate([
-            'file' => 'required|mimes:pdf,doc,docx,txt',
+            'file' => 'required|mimes:pdf,doc,docx,txt,png,jpg',
             'folder_id' => 'sometimes|string'
         ]);
 
         $folderId = $request->input('folder_id');
-        $userDirectory = 'user_' . auth()->id(); // Generate a unique directory name for the user
+        //$userDirectory = 'user_' . auth()->id(); // Generate a unique directory name for the user
+        $userDirectory = 'user_1'; // Generate a unique directory name for the user
         $disk = 'local'; // Replace with the name of the storage disk (e.g., 'public', 'local', 's3', etc.)
 
 
@@ -69,7 +70,9 @@ class FileController extends Controller
         return response()->json(['message' => 'File deleted successfully'], 200);
     }
 
-    public function getFiles(){
-        return response()->json(['message' => 'this is data']);
+    public function getFiles($id){
+        $folders =  Folder::where('parent_id',$id)->get();
+        $files =  File::where('folder_id',$id)->get();
+        return response()->json(['files' => $files, 'folders' => $folders], 201);
     }
 }

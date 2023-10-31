@@ -23,20 +23,25 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
-
-    Route::post('/files', 'App\Http\Controllers\API\FileController@upload');
-    Route::put('/files/{id}', 'App\Http\Controllers\API\FileController@update');
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/getfiles/{id}', 'App\Http\Controllers\API\FileController@getFiles');
+    Route::get('/getfolders', 'App\Http\Controllers\API\FolderController@getFolders');
+    Route::post('/folders', 'App\Http\Controllers\API\FolderController@create');
+    Route::delete('/folders/{id}', 'App\Http\Controllers\API\FolderController@delete');
     Route::delete('/files/{id}', 'App\Http\Controllers\API\FileController@delete');
+    Route::post('/file/upload', 'App\Http\Controllers\API\FileController@upload');
+
+    //Route::post('/files', 'App\Http\Controllers\API\FileController@upload');
+    //Route::put('/files/{id}', 'App\Http\Controllers\API\FileController@update');
+    //Route::delete('/files/{id}', 'App\Http\Controllers\API\FileController@delete');
 
     // Route::post('/folders', 'App\Http\Controllers\API\FolderController@create');
     // Route::put('/folders/{id}', 'YourNamespace\FolderController@update');
-    Route::delete('/folders/{id}', 'App\Http\Controllers\API\FolderController@delete');
+    //Route::delete('/folders/{id}', 'App\Http\Controllers\API\FolderController@delete');
 });
 
-//Route::middleware('auth:api')->post('/files', [FileController::class, 'upload']);
-//Route::middleware('auth:api')->delete('/files/{id}', [FileController::class, 'delete']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::get('/getfiles', 'App\Http\Controllers\API\FileController@getFiles');
-Route::get('/getfolders', 'App\Http\Controllers\API\FolderController@getFolders');
-Route::post('/folders', 'App\Http\Controllers\API\FolderController@create');
+//Route::middleware('auth:api')->post('/files', [FileController::class, 'upload']);
+//Route::middleware('auth:api')->delete('/files/{id}', [FileController::class, 'delete']);
+

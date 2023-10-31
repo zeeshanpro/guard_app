@@ -31,6 +31,9 @@
         folders: []
       };
     },
+    props: {
+      callMethod: ""
+    },
     methods: {
       openModal() {
         this.showModal = true;
@@ -42,10 +45,10 @@
       async submitModal() {
         // Handle the input value or perform other actions
         // alert("You entered: " + this.inputValue);
-        await axios.post('http://localhost:8000/api/folders', {'folder_name': this.inputValue}, config)
+        await axios.post('http://localhost:8000/api/folders', {'folder_name': this.inputValue, 'parent_folder': this.$route.params.id}, config)
         .then((response) => {
-            this.fetchData();
             console.log(response.data);
+            this.callMethod();
 
         })
         .catch((error) => {
