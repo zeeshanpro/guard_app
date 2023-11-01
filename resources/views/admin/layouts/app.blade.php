@@ -190,8 +190,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <form method="POST" action="#"></form>
-                            <a href="#" onclick="event.preventDefault(); this.closest('form').submit();" class="nav-link">
+                            <a href="/logout"  class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Logout
@@ -204,7 +203,7 @@
 
             </div>
 
-        </aside>
+            </aside>
 
         <div class="content-wrapper" id="app">
 

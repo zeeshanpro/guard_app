@@ -16,6 +16,9 @@ import Dashboard from './components/Dashboard.vue';
 import Files from './pages/Files.vue';
 import Login from './pages/auth/Login.vue';
 import Register from './pages/auth/Register.vue';
+import Sidebar from './components/Sidebar.vue';
+import store  from './store';
+
 
 const app = createApp(App);
 
@@ -23,5 +26,8 @@ app.component('dashboard', Dashboard);
 app.component('files', Files);
 app.component('login', Login);
 app.component('Register', Register);
+app.component('sidebar', Sidebar);
+
 app.use(Routes);
+app.use(store);
 app.mount('#app');

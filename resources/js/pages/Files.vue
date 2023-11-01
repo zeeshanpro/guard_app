@@ -112,11 +112,12 @@ import axios from 'axios';
 
 import Modal from '../components/Modal.vue';
 
+const token = `${localStorage.getItem('token')}`;
 
 const config = {
     headers: {
         'Content-Type': 'application/json',
-        // 'Authorization': `Bearer ${this.$store.state.token}`,
+        'Authorization': `Bearer ${token}`,
     },
 };
 
@@ -126,6 +127,9 @@ export default {
             files: [],
             folders: []
         }
+    },
+    created() {
+        this.$store.commit('initializeState');
     },
     components: {
         Modal
@@ -195,7 +199,7 @@ export default {
     },
     mounted() {
         this.fetchData();
-    },
+    }
 }
 
 </script>

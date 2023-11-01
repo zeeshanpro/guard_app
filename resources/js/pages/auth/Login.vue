@@ -53,6 +53,9 @@
 <script>
 import axios from 'axios';
 
+// Import the Vuex store
+// import store from '@/store';
+
 const config = {
     headers: {
         'Content-Type': 'application/json',
@@ -60,6 +63,7 @@ const config = {
 };
 
 export default {
+   
   data() {
     return {
       email: '',
@@ -81,11 +85,11 @@ export default {
         .then((response) => {
             
             const token = response.data.access_token;
-
+            console.log(this);
             // Store the token in the Vuex store
-            //this.$store.dispatch('login', token);
-
-            window.location.href = "/admin/files"
+            this.$store.dispatch('loginOrRegister', token);
+            
+            //window.location.href = "/admin/files"
                 })
                 .catch((error) => {
                     console.error('API Error:', error);
